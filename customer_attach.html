@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户附加信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="icon" href="img/logo_img.png">
+
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+
+    <link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="css/crm_leads.css"/>
+    <link rel="stylesheet" type="text/css" href="css/customer.css"/>
+
+    <style>
+        .connection button {
+            display: inline-block;
+            width: 40%;
+            margin-top: 10px;
+            padding: 5px;
+        }
+        .mui-input-group {
+            text-align: center;
+            /*background-color: #f5f5f5;*/
+            padding-bottom: 20px;
+            /*border-bottom: 1px solid #6d6d72;*/
+        }
+        .mui-input-group button {
+            display: inline-block;
+            width: 80%;
+            margin-top: 10px;
+            padding: 5px;
+
+        }
+        .mui-button-row .mui-btn {
+            display:  inline-block;
+            width: 40%;
+        }
+
+    </style>
+
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+    <h1 class="mui-title">客户附加信息</h1>
+</header>
+<div class="mui-content" style="margin-top: 1em;">
+    <h5 class="mui-content-padded">房屋信息</h5>
+    <div class="mui-content-padded" style="margin: 5px;">
+        <form class="mui-input-group">
+
+            <div class="mui-input-row">
+                <label>房产地址</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <div class="mui-input-row">
+                <label>房屋面积</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <div class="mui-input-row">
+                <label>房产评估值</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+
+        </form>
+
+    </div>
+    <h5 class="mui-content-padded">车辆信息</h5>
+    <div class="mui-content-padded" style="margin: 5px;">
+        <form class="mui-input-group">
+
+            <div class="mui-input-row">
+                <label>品牌型号</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <div class="mui-input-row">
+                <label>车辆评估值</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+
+        </form>
+    </div>
+
+    <h5 class="mui-content-padded">征信信息</h5>
+    <div class="mui-content-padded" style="margin: 5px;">
+        <form class="mui-input-group">
+
+            <div class="mui-input-row">
+                <label>打卡工资</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <div class="mui-input-row">
+                <label>月缴保单额</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <div class="mui-input-row">
+                <label>信用卡额度</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+
+        </form>
+        <div class="mui-input-row" style="margin: 10px 5px 0;">
+            <textarea id="textarea" rows="5" placeholder="征信情况"></textarea>
+        </div>
+        <div class="mui-input-row" style="margin: 0 5px 60px;">
+            <textarea  rows="5" placeholder="备注"></textarea>
+        </div>
+
+        <form class="mui-input-group" style="position: fixed;bottom: 0; width: 100%;">
+            <div class="mui-button-row">
+                <button type="button" class="mui-btn mui-btn-danger" onclick="return false;">取消</button>&nbsp;&nbsp;
+                <button type="button" class="mui-btn mui-btn-primary" onclick="return false;">确认</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--MUI框架-->
+<script src="js/mui.js"></script>
+
+<!--JQuery插件-->
+<script src="js/jquery-3.3.1.js"></script>
+
+</body>
+</html>

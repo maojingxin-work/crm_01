@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户详情</title>
+    <!--<meta name="viewport" content="width=device-width,user-scalable = no, initial-scale = 1.0, maximum-scale=1.0">-->
+
+    <!--&lt;!&ndash;iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览&ndash;&gt;-->
+    <!--<meta content="yes" name="apple-mobile-web-app-capable">-->
+    <!--&lt;!&ndash;iphone的私有标签，它指定的iphone中safari顶端的状态条的样式&ndash;&gt;-->
+    <!--<meta content="black" name="apple-mobile-web-app-status-bar-style">-->
+    <!--&lt;!&ndash;告诉设备忽略将页面中的数字识别为电话号码&ndash;&gt;-->
+    <!--<meta content="telephone=no" name="format-detection">-->
+    <!--&lt;!&ndash;去除Android平台邮箱识别&ndash;&gt;-->
+    <!--<meta content="email=no" name="format-detection"/>-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="icon" href="img/logo_img.png">
+
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+
+    <link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+
+    <style>
+        .mui-grid-view.mui-grid-9 .mui-media .mui-icon {
+            font-size: 26px;
+            color:#f0ad4e;
+        }
+
+        .mui-card-header span{
+            display: inline-block;
+            font-size: 1.2em;
+            color:red;
+        }
+        .btns{
+            margin: 10px 20px 0;
+        }
+        .btns button{
+            padding:2px 5px;
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">客户详情</h1>
+    <a href="{:U('Cutomer/trackpage')}&id={$customer_id}" class=" mui-icon mui-pull-right" style="font-size: 0.8em; top:8px;">跟踪记录</a>
+
+</header>
+
+<div class="mui-content">
+
+    <div class="mui-card">
+        <div class="mui-card-header">张先生 <a>抵押</a> <span class="">A</span></div>
+        <div class="btns">
+            <button type="button" class="mui-btn mui-btn-warning">等额本金</button>
+            <button type="button" class="mui-btn mui-btn-royal">等额本息</button>
+            <button type="button" class="mui-btn mui-btn-primary">停本付息</button>
+            <button type="button" class="mui-btn mui-btn-success">先息后本</button>
+        </div>
+        <div class="mui-card-content">
+            <div class="mui-card-content-inner">
+                <ul class="mui-table-view mui-grid-view mui-grid-9">
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 "><a href="#">
+                        <span class="mui-icon">20万</span>
+                        <div class="mui-media-body">预贷金额</div></a></li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 "><a href="#">
+                        <span class="mui-icon">50%</span>
+                        <div class="mui-media-body">期望利息</div></a></li>
+                    <li class="mui-table-view-cell mui-media mui-col-xs-4 "><a href="#">
+                        <span class="mui-icon">30天</span>
+                        <div class="mui-media-body">用款周期</div></a></li>
+                </ul>
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell" style="font-size: 1.2em;">期望4月30日用款</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mui-card">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell mui-collapse mui-active">
+                <a class="mui-navigate-right" href="#">基础信息</a>
+                <div class="mui-collapse-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">
+                            <span style="display: inline-block; margin-right: 5em;">性别：男</span>
+                            年龄：25岁
+                        </li>
+                        <li class="mui-table-view-cell">电话：18522566565</li>
+                        <li class="mui-table-view-cell">身份证号：148955689794654678</li>
+                        <li class="mui-table-view-cell">地址：北京市 西城区 市辖区 接头一</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="mui-table-view-cell mui-collapse mui-active">
+                <a class="mui-navigate-right" href="#">附加信息</a>
+                <div class="mui-collapse-content">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell">
+                            <span style="display: inline-block; margin-right: 5em;">房屋面积：100平</span>
+                            评估值：2000万
+                        </li>
+                        <li class="mui-table-view-cell">地址：北京市 西城区 市辖区 接头一</li>
+                        <li class="mui-table-view-cell">
+                            <span style="display: inline-block; margin-right: 2em;">京A999999</span>
+                            <span style="display: inline-block; margin-right: 2em;">BWM X5</span>
+                            评估值：2000万
+                        </li>
+                        <li class="mui-table-view-cell">打卡工资：5023.23</li>
+                        <li class="mui-table-view-cell">月缴保单额：5023.23</li>
+                        <li class="mui-table-view-cell">信用卡额度：2000wan</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <div class="mui-card">
+            <div class="mui-card-header">征信情况</div>
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+                </div>
+            </div>
+        </div>
+        <div class="mui-card">
+            <div class="mui-card-header">备注</div>
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MUI框架-->
+<script src="js/mui.js"></script>
+
+<!--JQuery插件-->
+<script src="js/jquery-3.3.1.js"></script>
+<script>
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+</script>
+
+</body>
+</html>

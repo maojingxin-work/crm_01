@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页--客户统计</title>
+    <meta name="viewport" content="width=device-width,user-scalable = no, initial-scale = 1.0, maximum-scale=1.0">
+
+    <!--iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!--iphone的私有标签，它指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection">
+    <!--去除Android平台邮箱识别-->
+    <meta content="email=no" name="format-detection"/>
+
+    <link rel="icon" href="img/logo_img.png">
+
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="css/customer.css"/>
+
+    <script src="js/mui.js"></script>
+</head>
+<body>
+
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item mui-active" href=" ">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item" href="customer_list.html">
+        <span class="mui-icon mui-icon-settings"></span>
+        <span class="mui-tab-label">列表</span>
+    </a>
+</nav>
+
+<script src="js/mui.js"></script>
+<script>
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+</script>
+</body>
+</html>

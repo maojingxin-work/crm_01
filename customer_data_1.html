@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable = no, initial-scale = 1.0, maximum-scale=1.0">
+
+    <!--iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!--iphone的私有标签，它指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection">
+    <!--去除Android平台邮箱识别-->
+    <meta content="email=no" name="format-detection"/>
+
+    <link rel="icon" href="img/logo_img.png">
+
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+
+    <style>
+        .table {
+            width: 100%;
+            border: 1px solid #cad9ea;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .table th {
+            background-repeat: repeat-x;
+            height: 30px;
+        }
+
+        .table td,
+        .table th {
+            border: 1px solid #cad9ea;
+            padding: 10px;
+            text-align: center;
+        }
+        .table tr:nth-child(odd){
+            background-color: #f5fafe;
+        }
+        .table tr.alter {
+            background-color: #f5fafe;
+        }
+    </style>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">客户统计信息--部门</h1>
+</header>
+<div class="mui-content">
+    <div class="mui-content-padded" style="background-color: #fff;margin-top: 5em;">
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>今日新增</th>
+                <th>本周新增</th>
+                <th>本月新增</th>
+                <th>客户总量</th>
+            </tr>
+            <tr>
+                <td>刘彩芳</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>刘彩芳</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>刘彩芳</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>刘彩芳</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>刘彩芳</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>刘彩芳</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>刘彩芳</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="js/mui.js"></script>
+<script>
+    mui.init();
+</script>
+</body>
+</html>

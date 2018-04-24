@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页--客户统计</title>
+    <meta name="viewport" content="width=device-width,user-scalable = no, initial-scale = 1.0, maximum-scale=1.0">
+
+    <!--iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!--iphone的私有标签，它指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection">
+    <!--去除Android平台邮箱识别-->
+    <meta content="email=no" name="format-detection"/>
+
+    <link rel="icon" href="img/logo_img.png">
+
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+    <style>
+        .chart {
+            height: 200px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h5 {
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        h5:first-child {
+            margin-top: 15px;
+        }
+
+        .mui-content .mui-content .mui-table-view {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .mui-table-view .mui-col-sm-5 {
+            height: 4em;
+            width: 42%;
+        }
+
+        .mui-col-sm-5 span {
+            font-size: 1.5em;
+            display: block;
+            text-align: right;
+        }
+
+        .mui-col-sm-5 p {
+            display: block;
+            text-align: right;
+            color: #f9f9f9;
+            margin-top: 0.5em;
+        }
+    </style>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <h1 class="mui-title">客户统计信息</h1>
+</header>
+<div class="mui-content" style="margin: 20px 0 60px;">
+    <div class="mui-content">
+        <ul class="mui-table-view mui-grid-view mui-grid-9">
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-5 "
+                style="background-color: #cf2d28;color:#fff; margin-right: 10%;">
+                <span>20个</span>
+                <p>成交客户</p>
+            </li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-5"
+                style="background-color:  #4cd964; color:#fff;margin-left: 5%;">
+                <span>50个</span>
+                <p>意向客户</p>
+            </li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-5 "
+                style="background-color: #8a6de9; color:#fff;margin-right: 10%;margin-top: 1em;">
+                <span>50个</span>
+                <p>意向客户</p>
+            </li>
+            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-5"
+                style="background-color:  #f0ad4e; color:#fff;margin-left: 5%;margin-top: 1em;">
+                <span>50个</span>
+                <p>意向客户</p>
+            </li>
+        </ul>
+    </div>
+    <div class="mui-content-padded">
+        <h5>柱图示例</h5>
+        <div class="chart" id="barChart" _echarts_instance_="1524383153670"
+             style="-webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0);">
+            <div style="position: relative; overflow: hidden; width: 355px; height: 200px;">
+                <div data-zr-dom-id="bg" class="zr-element"
+                     style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none;"></div>
+                <canvas width="1065" height="600" data-zr-dom-id="0" class="zr-element"
+                        style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+                <canvas width="1065" height="600" data-zr-dom-id="_zrender_hover_" class="zr-element"
+                        style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+            </div>
+        </div>
+        <h5>线图示例</h5>
+        <div class="chart" id="lineChart" _echarts_instance_="1524383153671"
+             style="-webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0); cursor: default;">
+            <div style="position: relative; overflow: hidden; width: 355px; height: 200px;">
+                <div data-zr-dom-id="bg" class="zr-element"
+                     style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none;"></div>
+                <canvas width="1065" height="600" data-zr-dom-id="0" class="zr-element"
+                        style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+                <canvas width="1065" height="600" data-zr-dom-id="_zrender_hover_" class="zr-element"
+                        style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+            </div>
+        </div>
+        <h5>饼图示例</h5>
+        <div class="chart" id="pieChart" _echarts_instance_="1524383153672"
+             style="-webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0); cursor: pointer;">
+            <div style="position: relative; overflow: hidden; width: 355px; height: 200px;">
+                <div data-zr-dom-id="bg" class="zr-element"
+                     style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none;"></div>
+                <canvas width="1065" height="600" data-zr-dom-id="0" class="zr-element"
+                        style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+                <canvas width="1065" height="600" data-zr-dom-id="_zrender_hover_" class="zr-element"
+                        style="position: absolute; left: 0px; top: 0px; width: 355px; height: 200px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="mui-bar mui-bar-tab ">
+    <a class="mui-tab-item mui-active" href="">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item " href="{:U('Customer/listpage')} ">
+        <span class="mui-icon mui-icon-settings"></span>
+        <span class="mui-tab-label">列表</span>
+    </a>
+    <a class="mui-tab-item " href="{:U('Mine/index')} ">
+        <span class="mui-icon mui-icon-person"></span>
+        <span class="mui-tab-label">我的</span>
+    </a>
+</nav>
+
+<script src="js/mui.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script>
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+    mui('body').on('tap', 'a', function () {
+        window.top.location.href = this.href;
+    });
+
+</script>
+<script>
+    var getOption = function (chartType) {
+        var chartOption = chartType == 'pie' ? {
+            calculable: false,
+            series: [{
+                name: '访问来源',
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '50%'],
+                data: [{
+                    value: 335,
+                    name: '直接访问'
+                }, {
+                    value: 310,
+                    name: '邮件营销'
+                }, {
+                    value: 234,
+                    name: '联盟广告'
+                }, {
+                    value: 135,
+                    name: '视频广告'
+                }, {
+                    value: 1548,
+                    name: '搜索引擎'
+                }]
+            }]
+        } : {
+            legend: {
+                data: ['蒸发量', '降水量']
+            },
+            grid: {
+                x: 35,
+                x2: 10,
+                y: 30,
+                y2: 25
+            },
+            toolbox: {
+                show: false,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['line', 'bar']
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: false,
+            xAxis: [{
+                type: 'category',
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }],
+            yAxis: [{
+                type: 'value',
+                splitArea: {
+                    show: true
+                }
+            }],
+            series: [{
+                name: '蒸发量',
+                type: chartType,
+                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+            }, {
+                name: '降水量',
+                type: chartType,
+                data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+            }]
+        };
+        return chartOption;
+    };
+    var byId = function (id) {
+        return document.getElementById(id);
+    };
+    var barChart = echarts.init(byId('barChart'));
+    barChart.setOption(getOption('bar'));
+    var lineChart = echarts.init(byId('lineChart'));
+    lineChart.setOption(getOption('line'));
+    var pieChart = echarts.init(byId('pieChart'));
+    pieChart.setOption(getOption('pie'));
+    // byId("echarts").addEventListener('tap',function(){
+    //     var url = this.getAttribute('data-url');
+    //     plus.runtime.openURL(url);
+    // },false);
+</script>
+<script>
+
+</script>
+</body>
+</html>

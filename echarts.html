@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户统计</title>
+    <meta name="viewport" content="width=device-width,user-scalable = no, initial-scale = 1.0, maximum-scale=1.0">
+
+    <!--iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!--iphone的私有标签，它指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection">
+    <!--去除Android平台邮箱识别-->
+    <meta content="email=no" name="format-detection"/>
+
+    <link rel="icon" href="img/logo_img.png">
+
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">客户统计信息--部门</h1>
+</header>
+<div class="mui-content">
+    <div class="mui-content-padded" style="background-color:  #fff; margin-top: 50px;">
+        <div id="main1" style="width: 100%;height: 200px;">
+        </div>
+    </div>
+    <div class="mui-content-padded" style="background-color:  #fff; margin-top: 50px;">
+        <div id="main2" style="width: 100%;height: 200px; margin-top: 50px">
+        </div>
+    </div>
+</div>
+
+
+<script src="js/mui.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/echarts.min.js"></script>
+<script>
+    mui.init();
+
+    $('.mui-content-padded').click(function () {
+        window.location.href = 'http://localhost:63343/crm_01/custoemr_data.html?_ijt=lspkduvljk0n27k0mri3najk6h'
+    });
+
+    var myChart1 = echarts.init(document.getElementById('main1'));
+    var myChart2 = echarts.init(document.getElementById('main2'));
+
+    // 指定图表的配置项和数据
+    // app.title = '世界人口总量 - 条形图';
+
+    var seriesLabel = {
+        normal: {
+            show: true,
+            textBorderColor: '#333',
+            textBorderWidth: 2
+        }
+    };
+
+    option1 = {
+        title: {
+            text: '金融一部'
+        },
+        grid: {
+            left: 70
+        },
+        toolbox: {
+            show: true
+        },
+        xAxis: {
+            type: 'value',
+            name: '位',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            nameRotate: 90,
+            data: [{
+                value: '今日新增',
+                textStyle: {
+                    fontWeight: 500
+                },
+            }, {
+                value: '本周新增',
+                textStyle: {
+                    fontWeight: 500
+                },
+            }, {
+                value: '本月新增',
+                textStyle: {
+                    fontWeight: 500
+                },
+            }]
+        },
+        series: [
+            {
+                name: '金融二部',
+                type: 'bar',
+                label: seriesLabel,
+                data: [50, 40, 110]
+            }
+        ]
+    };
+    option2 = {
+        title: {
+            text: '金融二部'
+        },
+        grid: {
+            left: 70
+        },
+        toolbox: {
+            show: true
+        },
+        xAxis: {
+            type: 'value',
+            name: '位',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            nameRotate: 90,
+            data: [{
+                value: '今日新增',
+                textStyle: {
+                    fontWeight: 500
+                },
+            }, {
+                value: '本周新增',
+                textStyle: {
+                    fontWeight: 500
+                },
+            }, {
+                value: '本月新增',
+                textStyle: {
+                    fontWeight: 500
+                },
+            }]
+        },
+        series: [
+            {
+                name: '金融二部',
+                type: 'bar',
+                label: seriesLabel,
+                data: [50, 40, 110]
+            }
+        ]
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart1.setOption(option1);
+    myChart2.setOption(option2);
+</script>
+</body>
+</html>

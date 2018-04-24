@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户列表</title>
+    <!--<meta name="viewport" content="width=device-width,user-scalable = no, initial-scale = 1.0, maximum-scale=1.0">-->
+
+    <!--iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!--iphone的私有标签，它指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection">
+    <!--去除Android平台邮箱识别-->
+    <meta content="email=no" name="format-detection"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="icon" href="__PUBLIC__/web/img/logo_img.png">
+
+    <link href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/mui.css"/>-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/mui.picker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/mui.poppicker.css"/>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/icons-extra.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/crm_leads.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/customer.css"/>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/web/css/mescroll.min.css"/>
+
+    <style>
+        .connection button {
+            display: inline-block;
+            width: 40%;
+            margin-top: 10px;
+            padding: 5px;
+        }
+
+        .mui-input-group {
+            text-align: center;
+            background-color: #fff;
+            padding-top: 1em;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #6d6d72;
+        }
+
+        .mui-input-group button {
+            display: inline-block;
+            width: 80%;
+            margin-top: 10px;
+            padding: 5px;
+
+        }
+
+        .connection {
+            padding-bottom: 1em;
+        }
+
+        .mui-button-row .mui-btn,
+        #start_date,
+        #end_date {
+            display: inline-block;
+            width: 40%;
+            margin-left: 5px;
+        }
+
+        .mui-table-view-cell:after {
+            background-color: #fff;
+        }
+
+        #addpage {
+            width: 4em;
+            height: 4em;
+            border-radius: 50%;
+            text-align: center;
+            position: fixed;
+            bottom: 4.5em;
+            right: 1em;
+        }
+
+        #addpage.mui-right:before {
+            /* float: right; */
+            /* padding-left: 0; */
+            font-size: 4em;
+            display: inline-block;
+            position: absolute;
+            top: -12px;
+            right: -1px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="search" style="position: fixed; top:0;z-index: 2;">
+    <div class="filter">
+        快捷查询 <i class="mui-icon mui-icon-arrowdown"></i>
+    </div>
+    <div class="c-time">
+        筛选 <i class="mui-icon mui-icon-arrowdown"></i>
+    </div>
+</div>
+
+<div class="connection hide" >
+    <ul class="mui-table-view">
+        <li data-date-by="" class="mui-table-view-cell select-time hide"></li>
+        <li data-date-by="today" class="mui-table-view-cell">今日新建</li>
+        <li data-date-by="week" class="mui-table-view-cell">本周新建</li>
+        <li data-date-by="month" class="mui-table-view-cell">本月新建</li>
+        <li data-date-by="focus" class="mui-table-view-cell">我关注的</li>
+    </ul>
+</div>
+
+<div class="search-info hide" style="">
+    <form class="mui-input-group" style="width:100%;">
+        <div class="mui-input-row">
+            <label>姓名</label>
+            <input id="search_name" type="text" placeholder="">
+        </div>
+        <div class="mui-input-row">
+            <label>电话</label>
+            <input id="search_phone" type="number" placeholder="">
+        </div>
+        <button id="showTypePicker" data-value="" class="mui-btn mui-btn-block" type="button">选择贷款类型</button>
+        <button id="showRatingPicker" data-value="" class="mui-btn mui-btn-block" type="button">选择客户评级</button>
+        <button id="start_date" data-date="" class="btn mui-btn mui-btn-block">开始日期 ...</button>
+        <button id="end_date" data-date="" class="btn mui-btn mui-btn-block">结束日期 ...</button>
+
+
+        <div class="mui-button-row">
+            <button type="button" class="mui-btn mui-btn-danger" onclick="searchCancel(this)">取消</button>
+            <button type="button" class="mui-btn mui-btn-primary" onclick="searchConfirm(this)">确认</button>&nbsp;&nbsp;
+        </div>
+    </form>
+
+</div>
+
+<div class="mui-content" style="margin-top: 2em;">
+
+    <div id="mescroll" class="content mescroll">
+        <ul id="scroller" class="mui-table-view">
+
+        </ul>
+    </div>
+</div>
+
+<button id="addpage" type="button" class="mui-btn mui-btn-success mui-icon mui-icon-plus mui-right"></button>
+
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item" href="index.html">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item mui-active" href=" ">
+        <span class="mui-icon mui-icon-settings"></span>
+        <span class="mui-tab-label">列表</span>
+    </a>
+</nav>
+
+<!--MUI框架-->
+<script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js"></script>
+<!--<script src="__PUBLIC__/web/js/mui.js"></script>-->
+<!--日期选择插件-->
+<script src="__PUBLIC__/web/js/mui.picker.min.js"></script>
+<!--联动选择插件-->
+<script src="__PUBLIC__/web/js/mui.poppicker.js"></script>
+
+<!--JQuery插件-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!--<script src="__PUBLIC__/web/js/jquery-3.3.1.js"></script>-->
+<script src="__PUBLIC__/web/js/common.js"></script>
+<!--上拉加载 下拉刷新-->
+<script src="__PUBLIC__/web/js/mescroll.min.js"></script>
+
+<!--MUI初始化 和mescroll-->
+<script>
+    mui.init();
+
+    (function ($, doc) {
+        var mescroll = new MeScroll("mescroll", { //第一个参数"mescroll"对应上面布局结构div的id
+            //如果您的下拉刷新是重置列表数据,那么down完全可以不用配置,具体用法参考第一个基础案例
+            //解析: down.callback默认调用mescroll.resetUpScroll(),而resetUpScroll会将page.num=1,再触发up.callback
+            down: {
+                callback: downCallback, //下拉刷新的回调,别写成downCallback(),多了括号就自动执行方法了
+            },
+            up: {
+                auto: false,
+                callback: upCallback, //上拉加载的回调
+                isBounce: false, //如果您的项目是在iOS的微信,QQ,Safari等浏览器访问的,建议配置此项.解析(必读)
+                noMoreSize: 10
+            }
+        });
+
+        //下拉刷新的回调
+        function downCallback() {
+            console.log('refresh');
+            $('#scroller').html('');
+            mescroll.resetUpScroll();
+        }
+
+        //上拉加载的回调 page = {num:1, size:10}; num:当前页 默认从1开始, size:每页数据条数,默认10
+        function upCallback(page) {
+
+            var seacrhObj = {};
+
+            seacrhObj.p = page['num'];
+            seacrhObj.by = $('.select-time').data('dateBy');
+
+            var arr = [];
+            var nameObj = {};
+            nameObj.field = 'name';
+            nameObj.val = $('#search_name').val();
+            var phoneObj = {};
+            phoneObj.field = 'phone';
+            phoneObj.val = $('#search_phone').val();
+            var loanTypeObj = {};
+            loanTypeObj.field = 'loan_type';
+            loanTypeObj.val = document.getElementById('showTypePicker').dataset.value;
+            var ratingObj = {};
+            ratingObj.field = 'rating';
+            ratingObj.val = document.getElementById('showRatingPicker').dataset.value;
+
+            arr.push(nameObj);
+            arr.push(phoneObj);
+            arr.push(loanTypeObj);
+            arr.push(ratingObj);
+            console.log(arr);
+
+            seacrhObj.searchfield = JSON.stringify(arr);
+            seacrhObj.start_date = document.getElementById('start_date').dataset.date;
+            seacrhObj.end_date = document.getElementById('end_date').dataset.date;
+
+            console.log(seacrhObj);
+
+            $.ajax({
+                type: 'POST',
+                url: '{:U("Customer/customerlist")}',
+                data: seacrhObj,
+                dataType: 'json',
+                success: function (res) {
+
+                    console.log(res);
+                    var arrlen = res.list.length;
+
+                    if (arrlen > 0) {
+
+                        var result = '';
+                        var lists = res.list;
+                        for (var i = 0; i < arrlen; i++) {
+                            var customer = lists[i];
+                            var edit_url = '{:U("Customer/editpage")}&id=' + customer.customer_id;
+                            var log_url = '{:U("Customer/editpage")}&id=' + customer.customer_id;
+                            var plus_url = '{:U("Customer/attachpage")}&id=' + customer.customer_id;
+                            var necessary_url = '{:U("Customer/needpage")}&id=' + customer.customer_id;
+                            var tel = 'tel://' + customer.phone;
+                            var focus = 'focusMe(this,' + customer.customer_id + ')';
+                            var closeFocus = 'closeFocusMe(this,' + customer.customer_id + ')';
+                            var focus_str = '';
+                            if (customer.focus) {
+                                focus_str = '<span onclick="' + closeFocus + '" class="mui-icon mui-icon-star-filled"></span> ' + customer.name + '  <span class="table-type">' + customer.loan_type + '</span><i>' + customer.rating + '</i>\n';
+                            } else {
+                                focus_str = '<span onclick="' + focus + '" class="mui-icon mui-icon-star"></span> ' + customer.name + '  <span class="table-type">' + customer.loan_type + '</span><i>' + customer.rating + '</i>\n';
+                            }
+
+                            result += '<li onclick="alert(1)" class="mui-table-view-cell mui-transitioning">\n' +
+                                '<div class="mui-slider-left mui-disabled">\n' +
+                                '                    <a data-tohref="' + tel + '" onclick="tohref(this)"  class="mui-btn mui-btn-yellow mui-icon mui-icon-phone" style="z-index: 2; transform: translate(90px, 0px);"></a>\n' +
+                                '                    <a data-tohref="' + log_url + '" onclick="tohref(this)"  class="mui-btn mui-btn-grey mui-icon mui-icon-chatboxes" style="z-index: 1; transform: translate(0px, 0px);"></a>\n' +
+                                '                </div>\n' +
+                                '                <div class="mui-slider-right mui-disabled">\n' +
+                                '                    <a data-tohref="' + edit_url + '" onclick="tohref(this)"  class="mui-btn mui-btn-grey mui-icon mui-icon-compose" style="transform: translate(0px, 0px);"></a>\n' +
+                                '                    <a data-tohref="' + plus_url + '" onclick="tohref(this)"  class="mui-btn mui-btn-yellow mui-icon mui-icon-flag" style="transform: translate(-90px, 0px);"></a>\n' +
+                                '                    <a data-tohref="' + necessary_url + '" onclick="tohref(this)"  class="mui-btn mui-btn-red mui-icon mui-icon-email" style="transform: translate(-180px, 0px);"></a>\n' +
+                                '                </div>' +
+                                '                <div class="mui-slider-handle" style="transform: translate(0px, 0px);">\n' +
+                                '                    <div class="mui-table-cell">\n' +
+                                '                        <div class="table-customer">\n' +
+                                focus_str +
+                                '                        </div>\n' +
+                                '                        <div class="table-employee">\n' +
+                                '                            负责人：' + customer.owner_name + ' <span class="table-time">创建时间：' + dateFormat(customer.create_time) + '</span>\n' +
+                                '                        </div>\n' +
+                                '                    </div>\n' +
+                                '                </div>\n' +
+                                '            </li>';
+                        }
+                        $('#scroller').append(result);
+                        mescroll.endSuccess(arrlen);
+                    }
+                    else {
+                        mescroll.endErr();
+                    }
+                    // 插入数据到页面，放到最后面
+
+                },
+                error: function (xhr, type) {
+                    mescroll.endErr();
+                }
+            });
+        }
+
+
+    })(jQuery, document);
+</script>
+
+<!--自定义内容-->
+<script>
+    $('#addpage').click(function () {
+        // window.location.href = "{:U('Customer/addpage')}"
+    });
+
+    $('[data-condition]').click(function () {
+        var lis = $('[data-condition]');
+        lis.each(function () {
+            $(this).removeClass('active')
+        });
+
+        $(this).addClass('active');
+        var condition = $(this).data('condition');
+        var formtype = $(this).data('formtype');
+        var field = $(this).data('field');
+        var htmlSetting = $(this).data('htmlSetting');
+        console.log(htmlSetting);
+        var html = '<input type="text" placeholder="输入信息">';
+        if (formtype == 'box') {
+            html = '<select>';
+            for (i in htmlSetting) {
+                html += '<option value="' + htmlSetting[i] + '">' + htmlSetting[i] + '</option>';
+            }
+            html += '</select>';
+
+        }
+        $('.information').html(html);
+    });
+
+    $('.c-time').click(function () {
+        if ($('.search-info').hasClass('hide')) {
+            $('.search-info').removeClass('hide');
+        } else {
+            $('.search-info').addClass('hide');
+        }
+        $('.connection').addClass('hide');
+
+    });
+
+    $('.filter').click(function () {
+        if ($('.connection').hasClass('hide')) {
+            $('.connection').removeClass('hide');
+        } else {
+            $('.connection').addClass('hide');
+        }
+        $('.search-info').addClass('hide');
+    });
+
+    $('[data-date-by]').click(function () {
+
+        $('[data-date-by]').each(function () {
+            $(this).removeClass('select-time');
+        });
+
+        $(this).addClass('select-time');
+
+        $('.connection').addClass('hide');
+
+        clearSearch();
+
+        mescroll.triggerDownScroll();
+
+    });
+
+    //清除快捷查询信息
+    function clearDate() {
+        $('[data-date-by]').each(function () {
+            $(this).removeClass('select-time');
+        });
+
+        $('.connection .hide').addClass('select-time');
+    }
+
+    //清除筛选信息
+    function clearSearch() {
+        $('#search_name').val('');
+        $('#search_phone').val('');
+
+        document.getElementById('showTypePicker').dataset.value = "";
+        document.getElementById('showTypePicker').innerText = "选择贷款类型";
+        document.getElementById('showRatingPicker').dataset.value = "";
+        document.getElementById('showRatingPicker').innerText = "选择客户评级";
+        document.getElementById('start_date').dataset.date = "";
+        document.getElementById('start_date').innerText = "开始日期";
+        document.getElementById('end_date').dataset.date = "";
+        document.getElementById('end_date').innerText = "结束日期";
+
+    }
+
+    //取消筛选
+    function searchCancel(obj) {
+        $('.search-info').addClass('hide');
+    }
+
+    //确认筛选
+    function searchConfirm(obj) {
+
+        clearDate();
+        mescroll.triggerDownScroll();
+        searchCancel(obj);
+    }
+
+    function focusMe(obj, id) {
+        event.stopPropagation();
+        $.ajax({
+            type: 'POST',
+            url: '{:U("Customer/batchfocus")}',
+            data: {'customer_id': id},
+            dataType: 'json',
+            success: function (res) {
+                console.log(res);
+                if (res.status == 1) {
+                    $(obj).removeClass('mui-icon-star');
+                    $(obj).addClass('mui-icon-star-filled');
+                    mui.toast('关注成功');
+
+                    $(obj).attr('onclick', 'closeFocusMe(this,' + id + ')');
+                    // obj.onclick = closeFocusMe(obj,id);
+                } else {
+                    mui.toast(res.info);
+                }
+            },
+            error: function (res) {
+                alert(res.info);
+            }
+        })
+    }
+
+    function closeFocusMe(obj, id) {
+        event.stopPropagation();
+        $.ajax({
+            type: 'POST',
+            url: '{:U("Customer/batchclose")}',
+            data: {'customer_id': id},
+            dataType: 'json',
+            success: function (res) {
+                console.log(res);
+                if (res.status == 1) {
+                    mui.toast('取消关注成功');
+                    $(obj).removeClass('mui-icon-star-filled');
+                    $(obj).addClass('mui-icon-star');
+
+                    $(obj).attr('onclick', 'focusMe(this,' + id + ')');
+
+
+                } else {
+                    mui.toast(res.info);
+                }
+            },
+            error: function (res) {
+                alert(res.info);
+            }
+        })
+    }
+
+    function tohref(obj) {
+        event.stopPropagation();
+        var to = obj.dataset.tohref;
+        mui.openWindow(to);
+    }
+
+</script>
+
+<!--日期选择-->
+<script>
+    (function ($) {
+        $.init();
+        // var result = document.getElementById('start_date');
+        var btns = $('.btn');
+        btns.each(function (i, btn) {
+            btn.addEventListener('tap', function () {
+                var _self = this;
+                if (_self.picker) {
+                    _self.picker.show(function (rs) {
+                        _self.innerText = rs.text;
+                        _self.picker.dispose();
+                        _self.picker = null;
+                    });
+                } else {
+
+                    var id = this.getAttribute('id');
+                    /*
+                     * 首次显示时实例化组件
+                     * 示例为了简洁，将 options 放在了按钮的 dom 上
+                     * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+                     */
+                    _self.picker = new $.DtPicker({
+                        type: 'date'
+                    });
+                    _self.picker.show(function (rs) {
+                        /*
+                         * rs.value 拼合后的 value
+                         * rs.text 拼合后的 text
+                         * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+                         * rs.m 月，用法同年
+                         * rs.d 日，用法同年
+                         * rs.h 时，用法同年
+                         * rs.i 分（minutes 的第二个字母），用法同年
+                         */
+                        _self.innerText = rs.text;
+                        _self.dataset.date = rs.text;
+                        /*
+                         * 返回 false 可以阻止选择框的关闭
+                         * return false;
+                         */
+                        /*
+                         * 释放组件资源，释放后将将不能再操作组件
+                         * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+                         * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+                         * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+                         */
+                        _self.picker.dispose();
+                        _self.picker = null;
+                    });
+                }
+
+            }, false);
+        });
+    })(mui);
+</script>
+
+<!--联动选择-->
+<script>
+    (function ($, doc) {
+        $.init();
+        $.ready(function () {
+            /**
+             * 获取对象属性的值
+             * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+             * @param {Object} obj 对象
+             * @param {String} param 属性名
+             */
+            var _getParam = function (obj, param) {
+                return obj[param] || '';
+            };
+            //普通示例
+            var typePicker = new $.PopPicker();
+            var typePickerData = '{$fieldType}';
+            typePicker.setData(JSON.parse(typePickerData));
+            var showTypePickerButton = doc.getElementById('showTypePicker');
+            showTypePickerButton.addEventListener('tap', function (event) {
+                typePicker.show(function (items) {
+                    showTypePickerButton.innerText = items[0].text;
+                    showTypePickerButton.dataset.value = items[0].value;
+
+                    //返回 false 可以阻止选择框的关闭
+                    //return false;
+                });
+            }, false);
+            //-----------------------------------------
+
+            var ratingPicker = new $.PopPicker();
+            var ratingPickerData = '{$fieldRating}';
+            ratingPicker.setData(JSON.parse(ratingPickerData));
+            var showRatingPickerButton = doc.getElementById('showRatingPicker');
+            showRatingPickerButton.addEventListener('tap', function (event) {
+                ratingPicker.show(function (items) {
+                    console.log(items);
+                    showRatingPickerButton.innerText = '评分级别:' + items[0].text;
+                    showRatingPickerButton.dataset.value = items[0].value;
+                    //返回 false 可以阻止选择框的关闭
+                    //return false;
+                });
+            }, false);
+
+
+        });
+    })(mui, document);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户</title>
+    <!--<meta name="viewport" content="width=device-width,user-scalable = no, initial-scale = 1.0, maximum-scale=1.0">-->
+
+    <!--&lt;!&ndash;iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览&ndash;&gt;-->
+    <!--<meta content="yes" name="apple-mobile-web-app-capable">-->
+    <!--&lt;!&ndash;iphone的私有标签，它指定的iphone中safari顶端的状态条的样式&ndash;&gt;-->
+    <!--<meta content="black" name="apple-mobile-web-app-status-bar-style">-->
+    <!--&lt;!&ndash;告诉设备忽略将页面中的数字识别为电话号码&ndash;&gt;-->
+    <!--<meta content="telephone=no" name="format-detection">-->
+    <!--&lt;!&ndash;去除Android平台邮箱识别&ndash;&gt;-->
+    <!--<meta content="email=no" name="format-detection"/>-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="icon" href="img/logo_img.png">
+
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mui.picker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mui.poppicker.css"/>
+
+    <link rel="stylesheet" type="text/css" href="css/customer.css"/>
+    <style type="text/css">
+        .mui-input-group{
+            padding-top: 0.5em;
+        }
+        .mui-input-group select,
+        #showCityPicker3{
+            border:1px solid #c8c7cc !important;
+            padding: 5px;
+            margin:1em 10px;
+            width: 95%;
+            text-align: left;
+        }
+        .mui-button-row,
+        .mui-input-row {
+            margin-top: 1em;
+        }
+
+        .mui-input-row label {
+            width: 30%;
+            text-align: justify-all;
+        }
+        .mui-input-row label ~ input {
+            width: 70%;
+        }
+    </style>
+
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+    <h1 class="mui-title">基础信息</h1>
+</header>
+<div class="mui-content" style="margin-top: 1em;">
+    <div class="mui-content-padded" style="margin: 5px;">
+        <form class="mui-input-group">
+
+            <div class="mui-input-row">
+                <label>姓&emsp;&emsp;名:</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <div class="mui-input-row">
+                <label>电&emsp;&emsp;话:</label>
+                <input type="number" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <div class="mui-input-row">
+                <label>年&emsp;&emsp;龄:</label>
+                <input type="number" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <div class="mui-input-row">
+                <label>身份证号:</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+            <select class="mui-btn mui-btn-block">
+                <option value="item-1">客户性别</option>
+                <option value="item-2">item-2</option>
+                <option value="item-3">item-3</option>
+                <option value="item-4">item-4</option>
+                <option value="item-5">item-5</option>
+            </select>
+            <select class="mui-btn mui-btn-block">
+                <option value="item-1">客户贷款类型</option>
+                <option value="item-2">item-2</option>
+                <option value="item-3">item-3</option>
+                <option value="item-4">item-4</option>
+                <option value="item-5">item-5</option>
+            </select>
+            <button id="showCityPicker3" class="mui-btn mui-btn-block" type="button">客户联系地址</button>
+            <div class="mui-input-row">
+                <label>街道信息:</label>
+                <input type="text" class="mui-input-clear" placeholder="" data-input-clear="5"><span class="mui-icon mui-icon-clear mui-hidden"></span>
+            </div>
+
+            <div class="mui-button-row">
+                <button type="button" class="mui-btn mui-btn-danger" onclick="return false;">取消</button>
+                <button type="button" class="mui-btn mui-btn-primary" onclick="return false;">确认</button>&nbsp;&nbsp;
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+<!--MUI框架-->
+<script src="js/mui.js"></script>
+<!--日期选择插件-->
+<script src="js/mui.picker.min.js"></script>
+<!--联动选择插件-->
+<script src="js/mui.poppicker.js"></script>
+<script src="js/city.data-3.js"></script>
+
+<!--JQuery插件-->
+<script src="js/jquery-3.3.1.js"></script>
+
+<script>
+    (function($, doc) {
+        $.init();
+        $.ready(function() {
+            /**
+             * 获取对象属性的值
+             * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+             * @param {Object} obj 对象
+             * @param {String} param 属性名
+             */
+            var _getParam = function(obj, param) {
+                return obj[param] || '';
+            };
+
+            //-----------------------------------------
+            //					//级联示例
+            var cityPicker3 = new $.PopPicker({
+                layer: 3
+            });
+            cityPicker3.setData(cityData3);
+            var showCityPickerButton = doc.getElementById('showCityPicker3');
+            showCityPickerButton.addEventListener('tap', function(event) {
+                cityPicker3.show(function(items) {
+                    showCityPickerButton.innerText = _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+                    //返回 false 可以阻止选择框的关闭
+                    //return false;
+                });
+            }, false);
+        });
+    })(mui, document);
+</script>
+</body>
+</html>
