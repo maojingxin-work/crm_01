@@ -10,31 +10,6 @@
     <link rel="icon" href="img/logo_img.png">
 
     <link rel="stylesheet" type="text/css" href="css/mui.css"/>
-    <style>
-        p {
-            width: 100%;
-            text-indent: 22px;
-        }
-
-        span.mui-icon {
-            font-size: 14px;
-            color: #007aff;
-            margin-left: -15px;
-            padding-right: 10px;
-        }
-
-        #info {
-            padding: 20px 10px;
-        }
-
-        /*.des {
-            margin: .5em 0;
-        }
-        .des>li {
-            font-size: 14px;
-            color: #8f8f94;
-        }*/
-    </style>
     <style type="text/css">
         .mui-preview-image.mui-fullscreen {
             position: fixed;
@@ -65,7 +40,7 @@
             line-height: 25px;
             color: #fff;
             text-align: center;
-            margin: 15px auto 4;
+            margin: 15px auto 4px;
             width: 70px;
             background-color: rgba(0, 0, 0, 0.4);
             border-radius: 12px;
@@ -235,9 +210,11 @@
     <div class="mui-content-padded">
         <p>
             <a href="#picture" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined"
-               style="padding: 5px 20px;">打开actionsheet</a>
+               style="padding: 5px 20px;">选取照片</a>
         </p>
-
+        <p>
+            <input type="file" accept="image/*" capture="camera">
+        </p>
         <p id="info">你刚点击了"拍照或录像"按钮</p>
     </div>
 </div>

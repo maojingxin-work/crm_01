@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>杨辉三角</title>
+</head>
+<body>
+
+
+<script>
+    var row = 8;
+    var arr = new Array();
+    for(var i=0;i<row;i++){
+        var arrSon = [];
+        for(var j=0;j<i+1;j++){
+            if(i==0 ||j==0 ||i==j){
+                arrSon.push(1)
+            }else{
+                arrSon.push(arr[i-1][j-1]+arr[i-1][j])
+            }
+        }
+        console.log(arrSon);
+        arr.push(arrSon);
+    }
+    for(var i=0;i<arr.length;i++){
+        var str = '';
+        for(var j=0;j<arr[i].length;j++){
+            str+=arr[i][j]+' ';
+        }
+        console.log(str);
+    }
+</script>
+</body>
+</html>
