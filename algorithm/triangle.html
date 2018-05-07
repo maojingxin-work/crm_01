@@ -3,32 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <title>杨辉三角</title>
+
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale = 1.0">
+
+    <style>
+        body {
+            width: 100%;
+            min-height: 500px;
+            margin: 0;
+            padding: 10px 0;
+            font-size: 20px;
+        }
+
+        @keyframes topToBottom {
+            from {
+                width: 50%;
+                background-color: red;
+                color: #fff;
+            }
+            to {
+                width: 100%;
+                background-color: #fff;
+                color: red;
+                border-bottom: 1px solid #f0ad4e;
+            }
+        }
+
+        /*火狐 FireFox*/
+        @-moz-keyframes topToBottom {
+            from {
+                width: 50%;
+                background-color: red;
+                color: #fff;
+            }
+            to {
+                width: 100%;
+                background-color: #fff;
+                color: red;
+                border-bottom: 1px solid #f0ad4e;
+            }
+        }
+
+        /*Safari Chrome*/
+        @-webkit-keyframes topToBottom {
+            from {
+                width: 50%;
+                background-color: red;
+                color: #fff;
+            }
+            to {
+                width: 100%;
+                background-color: #fff;
+                color: red;
+                border-bottom: 1px solid #f0ad4e;
+
+            }
+        }
+
+        /*Opera*/
+        @-o-keyframes topToBottom {
+            from {
+                width: 50%;
+                background-color: red;
+                color: #fff;
+            }
+            to {
+                width: 100%;
+                background-color: #fff;
+                color: red;
+                border-bottom: 1px solid #f0ad4e;
+            }
+        }
+
+        div {
+            font-size: 16px;
+            padding: 10px 20px;
+            height: 50px;
+            animation: topToBottom 2s infinite;
+            -moz-animation: topToBottom 2s infinite; /* Firefox */
+            -webkit-animation: topToBottom 2s infinite; /* Safari 和 Chrome */
+            -o-animation: topToBottom 2s infinite; /* Opera */
+
+            box-sizing: border-box;
+        }
+    </style>
 </head>
-<body>
-
-
+<body id="bodyN">
+    <span>点我啊！</span>
 <script>
-    var row = 8;
+    var row = 10;
     var arr = new Array();
-    for(var i=0;i<row;i++){
+    for (var i = 0; i < row; i++) {
         var arrSon = [];
-        for(var j=0;j<i+1;j++){
-            if(i==0 ||j==0 ||i==j){
+        for (var j = 0; j < i + 1; j++) {
+            if (i == 0 || j == 0 || i == j) {
                 arrSon.push(1)
-            }else{
-                arrSon.push(arr[i-1][j-1]+arr[i-1][j])
+            } else {
+                //杨辉三角的逻辑关系
+                arrSon.push(arr[i - 1][j - 1] + arr[i - 1][j])
             }
         }
         console.log(arrSon);
         arr.push(arrSon);
     }
-    for(var i=0;i<arr.length;i++){
+    for (var i = 0; i < arr.length; i++) {
         var str = '';
-        for(var j=0;j<arr[i].length;j++){
-            str+=arr[i][j]+' ';
+        for (var j = 0; j < arr[i].length; j++) {
+            str += arr[i][j] + ' ';
         }
         console.log(str);
     }
+    var x = 0;
+    document.getElementById('bodyN').addEventListener('click', function () {
+        var str = '';
+        if (x >= arr.length) {
+            document.getElementById('bodyN').removeEventListener('click',function(){
+                var el = document.createElement('div');
+                el.innerText = "项目已完成";
+                document.getElementById('bodyN').appendChild(el);
+            });
+            return;
+        }
+        for (var y = 0; y < arr[x].length; y++) {
+            str += arr[x][y] + ' ';
+        }
+
+        var el = document.createElement('div');
+        el.innerText = str;
+        document.getElementById('bodyN').appendChild(el);
+        x++;
+    })
+
 </script>
 </body>
 </html>
